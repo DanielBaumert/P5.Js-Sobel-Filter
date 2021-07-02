@@ -102,7 +102,7 @@ function setup() {
 
 	_sliderFilterL2R = createSliderEx(
 		"Sobel filter from left to right", 						// title
-		610, uiOffset += 40, 									// x, y 
+		610, uiOffset += 20, 									// x, y 
 		100, IGNORE, 											// width, height
 		0, 60, 30, 												// min, max, value
 		function(){ _hideFilterL2R = this.checked(); }			// changed function
