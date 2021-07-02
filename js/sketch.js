@@ -28,42 +28,42 @@ let _hideFilterTR2BL;
 
 const IGNORE = -1;
 // filter
-const CANNY_L2R = [
+const SOBEL_L2R = [
 	[-1,  0,  1],
 	[-2,  0,  2],
 	[-1,  0,  1]
 ];
-const CANNY_R2L = [
+const SOBEL_R2L = [
 	[1,  0,  -1],
 	[2,  0,  -2],
 	[1,  0,  -1]
 ];
-const CANNY_T2B= [
+const SOBEL_T2B= [
 	[-1, -2, -1],
 	[ 0,  0,  0],
 	[ 1,  2,  1]
 ];
-const CANNY_B2T = [
+const SOBEL_B2T = [
 	[ 1,  2,  1],
 	[ 0,  0,  0],
 	[-1, -2, -1]
 ];
-const CANNY_TL2BR = [
+const SOBEL_TL2BR = [
 	[-2, -1,  0],
 	[-1,  0,  1],
 	[ 0,  1,  2]
 ];
-const CANNY_BR2TL = [
+const SOBEL_BR2TL = [
 	[ 2,  1,  0],
 	[ 1,  0, -1],
 	[ 0, -1, -2]
 ];
-const CANNY_BL2TR = [
+const SOBEL_BL2TR = [
 	[ 0,  1,  2],
 	[-1,  0,  1],
 	[-2, -1,  0]
 ];
-const CANNY_TR2BL = [
+const SOBEL_TR2BL = [
 	[ 0, -1, -2],
 	[ 1,  0, -1],
 	[ 2,  1,  0]
@@ -101,7 +101,7 @@ function setup() {
 	);
 
 	_sliderFilterL2R = createSliderEx(
-		"Canny filter from left to right", 						// title
+		"Sobel filter from left to right", 						// title
 		610, uiOffset += 40, 									// x, y 
 		100, IGNORE, 											// width, height
 		0, 60, 30, 												// min, max, value
@@ -109,7 +109,7 @@ function setup() {
 	);
 
 	_sliderFilterR2L = createSliderEx(
-		"Canny filter from right to letf", 						// title
+		"Sobel filter from right to letf", 						// title
 		610, uiOffset += 40, 									// x, y 
 		100, IGNORE, 											// width, height
 		0, 60, 30, 												// min, max, value
@@ -117,7 +117,7 @@ function setup() {
 	);
 	
 	_sliderFilterT2B = createSliderEx(
-		"Canny filter from top to bottom", 						// title
+		"Sobel filter from top to bottom", 						// title
 		610, uiOffset += 40,									// x, y 
 		100, IGNORE, 											// width, height
 		0, 60, 30, 												// min, max, value
@@ -125,7 +125,7 @@ function setup() {
 	);
 	
 	_sliderFilterB2T = createSliderEx(
-		"Canny filter from bottom to top", 						// title
+		"Sobel filter from bottom to top", 						// title
 		610, uiOffset += 40,									// x, y 
 		100, IGNORE, 											// width, height
 		0, 60, 30, 												// min, max, value
@@ -133,7 +133,7 @@ function setup() {
 	);
 
 	_sliderFilterTL2BR = createSliderEx(
-		"Canny filter from top left to bottom right", 			// title
+		"Sobel filter from top left to bottom right", 			// title
 		610,  uiOffset += 40, 									// x, y 
 		100, IGNORE, 											// width, height
 		0, 60, 30, 												// min, max, value
@@ -141,7 +141,7 @@ function setup() {
 	);
 
 	_sliderFilterBR2TL = createSliderEx(
-		"Canny filter from bottom right to top left", 			// title
+		"Sobel filter from bottom right to top left", 			// title
 		610,  uiOffset += 40, 									// x, y 
 		100, IGNORE, 											// width, height
 		0, 60, 30, 												// min, max, value
@@ -149,7 +149,7 @@ function setup() {
 	);
 	
 	_sliderFilterBL2TR = createSliderEx(
-		"Canny filter bottom left to top right",				// title
+		"Sobel filter bottom left to top right",				// title
 		610, uiOffset += 40, 									// x, y
 		100, IGNORE, 											// width, height
 		0, 60, 30, 												// min, max, value
@@ -157,7 +157,7 @@ function setup() {
 	);
 
 	_sliderFilterTR2BL = createSliderEx(
-		"Canny filter top right to bottom left",				// title
+		"Sobel filter top right to bottom left",				// title
 		610, uiOffset += 40, 									// x, y
 		100, IGNORE, 											// width, height
 		0, 60, 30, 												// min, max, value
@@ -265,26 +265,26 @@ function draw() {
 						// Calculate the 1D location from a 2D grid
 						let imgLoc = ((x + matrixX) + (y + matrixY) * _img.width) * 4;
 						// Get the value form the Kernel
-						let cannyValueL2R = CANNY_L2R[1 + matrixY][1 + matrixX];
-						let cannyValueR2L = CANNY_R2L[1 + matrixY][1 + matrixX];
-						let cannyValueT2B = CANNY_T2B[1 + matrixY][1 + matrixX];
-						let cannyValueB2T = CANNY_B2T[1 + matrixY][1 + matrixX];
-						let cannyValueTL2BR = CANNY_TL2BR[1 + matrixY][1 + matrixX];
-						let cannyValueBR2TL = CANNY_BR2TL[1 + matrixY][1 + matrixX];
-						let cannyValueBL2TR = CANNY_BL2TR[1 + matrixY][1 + matrixX];
-						let cannyValueTR2BL = CANNY_TR2BL[1 + matrixY][1 + matrixX];
+						let sobelValueL2R = SOBEL_L2R[1 + matrixY][1 + matrixX];
+						let sobelValueR2L = SOBEL_R2L[1 + matrixY][1 + matrixX];
+						let sobelValueT2B = SOBEL_T2B[1 + matrixY][1 + matrixX];
+						let sobelValueB2T = SOBEL_B2T[1 + matrixY][1 + matrixX];
+						let sobelValueTL2BR = SOBEL_TL2BR[1 + matrixY][1 + matrixX];
+						let sobelValueBR2TL = SOBEL_BR2TL[1 + matrixY][1 + matrixX];
+						let sobelValueBL2TR = SOBEL_BL2TR[1 + matrixY][1 + matrixX];
+						let sobelValueTR2BL = SOBEL_TR2BL[1 + matrixY][1 + matrixX];
 						
 						// Get the R,G,B values from image
 						let grayValue = _grayScaledImg[imgLoc + 0];
 
-						kernelL2R += cannyValueL2R * grayValue;
-						kernelR2L += cannyValueR2L * grayValue;
-						kernelT2B += cannyValueT2B * grayValue;
-						kernelB2T += cannyValueB2T * grayValue;
-						kernelTL2BR += cannyValueTL2BR * grayValue;
-						kernelBR2TL += cannyValueBR2TL * grayValue;
-						kernelBL2TR += cannyValueBL2TR * grayValue;
-						kernelTR2BL += cannyValueTR2BL * grayValue;	
+						kernelL2R += sobelValueL2R * grayValue;
+						kernelR2L += sobelValueR2L * grayValue;
+						kernelT2B += sobelValueT2B * grayValue;
+						kernelB2T += sobelValueB2T * grayValue;
+						kernelTL2BR += sobelValueTL2BR * grayValue;
+						kernelBR2TL += sobelValueBR2TL * grayValue;
+						kernelBL2TR += sobelValueBL2TR * grayValue;
+						kernelTR2BL += sobelValueTR2BL * grayValue;	
 					}
 				}
 
