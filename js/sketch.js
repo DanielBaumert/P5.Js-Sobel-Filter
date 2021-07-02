@@ -94,7 +94,7 @@ function setup() {
 	);	
 
 	createCheckBoxEx(	
-		"Hide canny",  											// title
+		"Hide sobel",  											// title
 		610, uiOffset += 20, 									// x, y
 		false, 													// status
 		function() { _hideSobelFilter = this.checked(); } 		// changed function
