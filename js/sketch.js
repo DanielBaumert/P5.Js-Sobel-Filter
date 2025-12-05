@@ -288,8 +288,5 @@ function mouseReleased() {
 
 function f(x) { 
 	let xScaled = x / 360;
-	return (
-		abs(abs(abs(xScaled - 1.0) - 1.0) - abs(-abs(xScaled)       + 1.0)      ) 
-	  - abs(abs(abs(xScaled - 4.0) - 1.0) - abs(-abs(xScaled - 3.0) + 1.0) - 1.5)
-	) * 4;
+	return Math.abs((8 * x) % 8) - 4) - 2;
 }
